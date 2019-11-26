@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Restaurant</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="telephone">Telephone</string>
+    <string name="button_signup">S\'inscrire</string>
+    <string name="button_signin">Se connecter</string>
+    <string name="text_when_registered">Vous avez deja un compte? Se connecter</string>
+    <string name="text_when_not_registered">Vous n\'avez pas un compte? S\'inscrire</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="pref_file">userData</string>
+</resources>

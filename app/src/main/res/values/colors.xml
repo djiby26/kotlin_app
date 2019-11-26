@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#D81B60</color>
+    <color name="colorPrimaryDark">#FE5295</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="splashColorPrimary">#008577</color>
+    <color name="splashColorPrimaryDark">#00574B</color>
+    <color name="splashColorAccent">#D81B60</color>
+    <color name="white">#ffffff</color>
+    <color name="colorGrey">#e7e7e7</color>
+
+<!--    &lt;!&ndash; colors for the buttons !&ndash;&gt;-->
+<!--    <color name="gradient_start_color">#00BCD4</color>-->
+<!--    <color name="gradient_end_color">#03A9F4</color>-->
+
+<!--    &lt;!&ndash; colors for the tab and screen text !&ndash;&gt;-->
+<!--    <color name="tab_indicator_gray">#BBBFC0</color>-->
+<!--    <color name="intro_title_color">#19191A</color>-->
+<!--    <color name="intro_description_color">#3B5555</color>-->
+
+</resources>

@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LoginActivity : AppCompatActivity() {
 
     private val builder: Retrofit.Builder = Retrofit.Builder()
-        .baseUrl( "http://3f8977e2.ngrok.io/")
+        .baseUrl( "http://0ec7cdc8.ngrok.io/")
         .addConverterFactory(GsonConverterFactory.create())
 
     val PREF_FILE = "com.dev.restaurant.prefs"

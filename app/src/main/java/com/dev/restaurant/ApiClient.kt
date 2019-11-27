@@ -2,6 +2,7 @@ package com.dev.restaurant
 
 import com.dev.restaurant.models.Menu
 import com.dev.restaurant.models.User
+import io.reactivex.Observable
 
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -18,5 +19,5 @@ interface ApiClient {
     fun getSecret(@Header("Authorization") authToken: String): Call<ResponseBody>
 
     @GET("api/menus")
-    fun getMenu():Call<ArrayList<Menu>>
+    fun getMenu():Observable<List<Menu>>
 }

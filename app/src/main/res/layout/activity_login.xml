@@ -47,7 +47,6 @@
         android:layout_alignParentBottom="true"
         android:gravity="center">
 
-
         <EditText
             android:id="@+id/username"
             android:layout_width="match_parent"
@@ -92,7 +91,6 @@
             android:textStyle="bold"
             android:textColor="#FAD0E1"
             android:fontFamily="sans-serif"/>
-
 
     </LinearLayout>
 

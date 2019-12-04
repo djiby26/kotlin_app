@@ -1,121 +1,65 @@
 package com.dev.restaurant
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dev.restaurant.MenuAdapter.Listener
 import com.dev.restaurant.models.Menu
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity(), Listener {
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+class MainActivity : AppCompatActivity() {
 
+    private lateinit var menuAdapter: MenuAdapter
+    private lateinit var data:ArrayList<Menu>
+    private lateinit var recyclerView: RecyclerView
 
-//    lateinit var recyclerView:RecyclerView
-    private var recyclerAdapter: MenuAdapter? = null
-    private var compositeDisposable:CompositeDisposable? = null
-    private var menuList:List<Menu>? = null
-    private val TAG = MainActivity::class.java.simpleName
-
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
 
-        compositeDisposable = CompositeDisposable()
-
-        initRecyclerView()
-
-        loadData()
-
-//        val call: Call<List<Menu>> = apiClient.getMenu()
-//
-//        call.enqueue(object : Callback<List<Menu>> {
-//
-//            override fun onResponse(call: Call<List<Menu>>, response: Response<List<Menu>>) {
-//                if(response.body() != null){
-////                    recyclerAdapter.setMenuListItems(response.body()!!)
-//                }
-//
-//                Log.d("reponse", response.body()?.get(1)?.nom)
-////                afficherMenu(response.body())
-//
-//            }
-//            override fun onFailure(call: Call<List<Menu>>, t: Throwable) {
-//                Log.d("reponse", t.message)
-//            }
-//        })
+//    private fun initView() {
 //        recyclerView = recycler_view
-//        recyclerAdapter = MenuAdapter(this.)x
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = recyclerAdapter
-
-
-    }
-
-    private fun initRecyclerView() {
-        recycler_view.setHasFixedSize(true)
-        val layoutManager: RecyclerView.LayoutManager =
-            LinearLayoutManager(this)
-        recycler_view.layoutManager = layoutManager
-    }
-
-    private fun loadData() {
-        val requestInterface: ApiClient = Retrofit.Builder()
-            .baseUrl( "http://0ec7cdc8.ngrok.io/")
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build().create(ApiClient::class.java)
-
-        compositeDisposable?.add(requestInterface.getMenu()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(this::handleResponse,this::handleError)
-        )
-
-
-
-//        private val apiClient:ApiClient = retrofit.create(ApiClient::class.java)
-    }
-
-    private fun handleResponse(menuListe:List<Menu>) {
-//        menuList = ArrayList(menuListe)
-        recyclerAdapter = MenuAdapter(menuListe, this)
-        recycler_view.adapter = recyclerAdapter
-    }
-
-    private fun handleError(error:Throwable){
-        Log.d(TAG,error.localizedMessage)
-        Toast.makeText(this, "Error ${error.localizedMessage}",
-            Toast.LENGTH_SHORT).show()
-    }
-
-
-
-
-//    private fun getMenu() {
-//
-//
-////        val menus = List<Menu>().
+//        recyclerView.setHasFixedSize(true)
+//        val layoutManger: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
+//        recyclerView.layoutManager = layoutManger
+////        loadJson()
 //    }
 
-    override fun onItemClick(menu: Menu) {
-        Toast.makeText(this, "${menu.nom} Clicked !", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable?.clear()
-    }
-
-//    private fun afficherMenu(menu: List<Menu>?) {
-//
+//    private fun loadJson() {
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("http://1a9fb5e8.ngrok.io/")
+//            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+//            .build()
+//        val apiMenu = retrofit.create(ApiClient::class.java)
+//        val call:Call<JsonResponse> = apiMenu.getMenu()
+//        call.enqueue(object : Callback<JsonResponse>{
+//            override fun onResponse(call: Call<JsonResponse>, response: Response<JsonResponse>) {
+//                if (response.isSuccessful){
+//                    val jsonResponse: JsonResponse? = response.body()
+//                    data = ArrayList(jsonResponse?.menu)
+//                    menuAdapter = MenuAdapter(data)
+//                    recyclerView.adapter = menuAdapter
+//                    Toast.makeText(applicationContext,data[2].nom,Toast.LENGTH_LONG).show()
+//                }else{
+//                    Toast.makeText(applicationContext,"il y'a une erreur",Toast.LENGTH_LONG).show()
+//                }
+//            }
+//            override fun onFailure(call: Call<JsonResponse>, t: Throwable) {
+//                Log.d("error",t.message)
+//            }
+//        })
 //    }
 }

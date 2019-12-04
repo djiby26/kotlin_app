@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LoginActivity : AppCompatActivity() {
 
     private val builder: Retrofit.Builder = Retrofit.Builder()
-        .baseUrl( "http://0ec7cdc8.ngrok.io/")
+        .baseUrl( "http://792f07b4.ngrok.io/")
         .addConverterFactory(GsonConverterFactory.create())
 
     val PREF_FILE = "com.dev.restaurant.prefs"
@@ -39,8 +39,6 @@ class LoginActivity : AppCompatActivity() {
         sharedPref = this.getSharedPreferences(
             PREF_FILE,Context.MODE_PRIVATE )
         login.setOnClickListener{ login() }
-
-
     }
 
     private var token=""

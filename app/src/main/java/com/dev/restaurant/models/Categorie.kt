@@ -2,15 +2,9 @@ package com.dev.restaurant.models
 
 class Categorie {
 
-    var menu_id:String? = null
+    var menu_id :String? = null
     var name:String? = null
     var image:String? = null
-
-    constructor()
-    constructor(menu_id: String?, name: String?, image: String?) {
-        this.menu_id = menu_id
-        this.name = name
-        this.image = image
-    }
+    var foods:List<Menu>? = null
 
 }

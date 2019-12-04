@@ -1,8 +1,8 @@
 package com.dev.restaurant.callback
 
-import com.dev.restaurant.models.Categorie
+import com.dev.restaurant.models.MPCategorie
 
 interface ICategorieCallback {
-    fun onCategorieLoadSuccess(categorieList:List<Categorie>)
+    fun onCategorieLoadSuccess(MPCategorieList:List<MPCategorie>)
     fun onCategorieLoadFailed(message:String)
 }

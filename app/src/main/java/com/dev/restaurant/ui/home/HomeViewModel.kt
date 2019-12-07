@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dev.restaurant.callback.ICategorieCallback
+import com.dev.restaurant.callback.IMPCategorieCallback
 import com.dev.restaurant.callback.IMenuCallback
 import com.dev.restaurant.models.MPCategorie
 import com.dev.restaurant.models.Menu
@@ -13,12 +13,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class HomeViewModel : ViewModel(),ICategorieCallback, IMenuCallback {
+class HomeViewModel : ViewModel(),IMPCategorieCallback, IMenuCallback {
 
     private var MPCategorieListMutable:MutableLiveData<List<MPCategorie>>? = null
     private var menuListMutable:MutableLiveData<List<Menu>>? = null
     private lateinit var messageError: MutableLiveData<String>
-    private var iCategorieLoad:ICategorieCallback = this
+    private var IMPCategorieLoad:IMPCategorieCallback = this
     private var iMenuLoad:IMenuCallback = this
 
     override fun onCategorieLoadSuccess(MPCategorieList: List<MPCategorie>) {
@@ -43,7 +43,7 @@ class HomeViewModel : ViewModel(),ICategorieCallback, IMenuCallback {
 
         val tempList = ArrayList<Menu>()
         val menuRef = FirebaseDatabase
-            .getInstance().getReference("Category")
+            .getInstance().getReference("MostPopular")
         menuRef.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 iMenuLoad.onMenugorieLoadFailed(p0.message)
@@ -62,7 +62,7 @@ class HomeViewModel : ViewModel(),ICategorieCallback, IMenuCallback {
     }
 
     init {
-        iCategorieLoad = this
+        IMPCategorieLoad = this
     }
 
     val MPCategorieList:LiveData<List<MPCategorie>>get() {
@@ -70,18 +70,18 @@ class HomeViewModel : ViewModel(),ICategorieCallback, IMenuCallback {
         if (MPCategorieListMutable == null){
             MPCategorieListMutable = MutableLiveData()
             messageError = MutableLiveData()
-            loadCategoryList()
+            loadMPCategoryList()
         }
         return MPCategorieListMutable!!
     }
 
-    private fun loadCategoryList() {
+    private fun loadMPCategoryList() {
         val tempList = ArrayList<MPCategorie>()
         val categorieRef = FirebaseDatabase
             .getInstance().getReference("MostPopular")
         categorieRef.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
-                iCategorieLoad.onCategorieLoadFailed(p0.message)
+                IMPCategorieLoad.onCategorieLoadFailed(p0.message)
             }
 
             override fun onDataChange(p0: DataSnapshot) {
@@ -91,7 +91,7 @@ class HomeViewModel : ViewModel(),ICategorieCallback, IMenuCallback {
                     tempList.add(model!!)
                     Log.d("model",model.name)
                 }
-                iCategorieLoad.onCategorieLoadSuccess(tempList)
+                IMPCategorieLoad.onCategorieLoadSuccess(tempList)
             }
 
         })

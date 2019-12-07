@@ -1,6 +1,7 @@
 package com.dev.restaurant
 
 import android.os.Bundle
+import android.view.DragEvent
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.findNavController
@@ -13,6 +14,10 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import com.dev.restaurant.eventBus.CategorieClick
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class HomeActivity : AppCompatActivity() {
 
@@ -53,5 +58,20 @@ class HomeActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        EventBus.getDefault().unregister(this)
+        super.onStop()
+    }
+
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+    fun onCategorieSelected(event:CategorieClick){
+        
     }
 }

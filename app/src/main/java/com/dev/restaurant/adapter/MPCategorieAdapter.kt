@@ -1,4 +1,4 @@
-package com.dev.restaurant
+package com.dev.restaurant.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dev.restaurant.R
 import com.dev.restaurant.models.MPCategorie
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -14,7 +15,8 @@ class MPCategorieAdapter(private var context: Context, private var MPCategorie:L
  RecyclerView.Adapter<MPCategorieAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.categorie_item,
+        return MyViewHolder(LayoutInflater.from(context).inflate(
+            R.layout.categorie_item,
             parent,false))
     }
 
@@ -24,7 +26,7 @@ class MPCategorieAdapter(private var context: Context, private var MPCategorie:L
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
          Glide.with(context).load(MPCategorie.get(position).image).into(holder.categorieImage!!)
-        holder.categorieName!!.setText(MPCategorie.get(position).name)
+        holder.categorieName!!.text = MPCategorie.get(position).name
     }
 
     inner class MyViewHolder (itemView: View):RecyclerView.ViewHolder(itemView){

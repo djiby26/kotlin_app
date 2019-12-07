@@ -7,13 +7,15 @@ import com.google.gson.annotations.SerializedName
 class Menu {
 
 
-    var id: Int? = null
+    var id: String? = null
     var name: String? = null
     var image: String? = null
     var detail: String? = null
+    var prix: Long = 0
+    var addon:List<Addon>?=ArrayList()
 
     constructor()
-    constructor(id: Int?, name: String?, image: String?, detail: String?) {
+    constructor(id: String?, name: String?, image: String?, detail: String?) {
         this.id = id
         this.name = name
         this.image = image

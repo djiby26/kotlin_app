@@ -3,18 +3,9 @@ package com.dev.restaurant
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dev.restaurant.adapter.MenuAdapter
 import com.dev.restaurant.models.Menu
-import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.collections.ArrayList
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")

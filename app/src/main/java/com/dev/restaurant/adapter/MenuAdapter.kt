@@ -1,4 +1,4 @@
-package com.dev.restaurant
+package com.dev.restaurant.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.bumptech.glide.Glide
+import com.dev.restaurant.R
 import com.dev.restaurant.models.Menu
 
 class MenuAdapter(context: Context,

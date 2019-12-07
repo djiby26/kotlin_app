@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.asksira.loopingviewpager.LoopingViewPager
-import com.dev.restaurant.MPCategorieAdapter
-import com.dev.restaurant.MenuAdapter
+import com.dev.restaurant.adapter.MPCategorieAdapter
+import com.dev.restaurant.adapter.MenuAdapter
 import com.dev.restaurant.R
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -39,12 +39,16 @@ class HomeFragment : Fragment() {
 
         homeViewModel.MPCategorieList.observe(this, Observer {
             val listData = it
-            val adapter = MPCategorieAdapter(context!!,listData)
+            val adapter = MPCategorieAdapter(
+                context!!,
+                listData
+            )
             restaurant_recycler.adapter = adapter
             recyclerView!!.layoutAnimation = layoutAnimationController
         })
         homeViewModel.menuList.observe(this, Observer {
-            val adapter = MenuAdapter(this.context!!,it,false)
+            val adapter =
+                MenuAdapter(this.context!!, it, false)
             viewPager!!.adapter = adapter
         })
         return root

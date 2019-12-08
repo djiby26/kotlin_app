@@ -16,7 +16,7 @@ class MPCategorieAdapter(private var context: Context, private var MPCategorie:L
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(
-            R.layout.categorie_item,
+            R.layout.mp_categorie_item,
             parent,false))
     }
 

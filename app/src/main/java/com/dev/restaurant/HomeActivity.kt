@@ -1,6 +1,7 @@
 package com.dev.restaurant
 
 import android.os.Bundle
+import android.util.Log
 import android.view.DragEvent
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -14,7 +15,9 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.widget.Toast
 import com.dev.restaurant.eventBus.CategorieClick
+import com.dev.restaurant.eventBus.FoodItemClick
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -41,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_categorie, R.id.nav_slideshow,
+                R.id.nav_home, R.id.nav_categorie, R.id.nav_food_detail,
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send
             ), drawerLayout
         )
@@ -66,12 +69,21 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
-        EventBus.getDefault().unregister(this)
         super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     fun onCategorieSelected(event:CategorieClick){
-        
+        if(event.isSuccess){
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_food)
+        }
+    }
+
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+    fun onFoodSelected(event: FoodItemClick){
+        if(event.isSuccess){
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_food_detail)
+        }
     }
 }

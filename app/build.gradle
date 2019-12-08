@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion 28
@@ -71,5 +73,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:21.3.0'
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    implementation 'com.github.andremion:counterfab:1.2.0'
     //    implementation 'com.github.AppIntro:AppIntro:5.1.0'
 }

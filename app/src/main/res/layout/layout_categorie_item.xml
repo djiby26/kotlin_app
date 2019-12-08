@@ -6,9 +6,10 @@
 
     <ImageView
         android:id="@+id/categorie_image"
-        android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:contentDescription="@string/image_desc"
+        android:scaleType="fitXY" />
 
     <View
         android:background="@color/overLayColor"

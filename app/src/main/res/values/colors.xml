@@ -11,6 +11,7 @@
     <color name="colorGrey">#e7e7e7</color>
     <color name="colorAccentDark">#4aa87a</color>
     <color name="overLayColor">#55333639</color>
+    <color name="border_color">#AA333639</color>
 
 
 </resources>

@@ -10,16 +10,16 @@ class Menu {
     var id: String? = null
     var name: String? = null
     var image: String? = null
-    var detail: String? = null
+    var description: String? = null
     var prix: Long = 0
     var addon:List<Addon>?=ArrayList()
 
     constructor()
-    constructor(id: String?, name: String?, image: String?, detail: String?) {
+    constructor(id: String?, name: String?, image: String?, description: String?) {
         this.id = id
         this.name = name
         this.image = image
-        this.detail = detail
+        this.description = description
     }
 
     //    var prix: String ,

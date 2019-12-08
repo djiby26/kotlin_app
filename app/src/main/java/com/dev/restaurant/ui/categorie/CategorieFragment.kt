@@ -15,10 +15,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.restaurant.adapter.CategorieAdapter
 import com.dev.restaurant.R
+import com.dev.restaurant.common.Common
 import com.dev.restaurant.common.SpaceItemDecoration
-import com.dev.restaurant.common.common
 import dmax.dialog.SpotsDialog
-import kotlinx.android.synthetic.main.fragment_category.*
 
 class CategorieFragment : Fragment() {
 
@@ -66,8 +65,8 @@ class CategorieFragment : Fragment() {
             override fun getSpanSize(position: Int): Int {
                 return if (adapter != null){
                     when(adapter!!.getItemViewType(position)){
-                        common.DEFAULT_COLUMN_COUNT -> 1
-                        common.FULL_WIDTH_COLUMN -> 2
+                        Common.DEFAULT_COLUMN_COUNT -> 1
+                        Common.FULL_WIDTH_COLUMN -> 2
                         else -> 1
                     }
                 }else -1

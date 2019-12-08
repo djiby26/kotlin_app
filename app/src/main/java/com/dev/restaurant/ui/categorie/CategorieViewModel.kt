@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.dev.restaurant.ApiClient
 import com.dev.restaurant.JsonResponse
 import com.dev.restaurant.callback.ICategorieCallback
-import com.dev.restaurant.common.common
+import com.dev.restaurant.common.Common
 import com.dev.restaurant.models.Categorie
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -55,7 +55,7 @@ class CategorieViewModel : ViewModel(),ICategorieCallback {
 
         val tempList = ArrayList<Categorie>()
         val categorieRef= FirebaseDatabase
-            .getInstance().getReference(common.CATEGORY_REF)
+            .getInstance().getReference(Common.CATEGORY_REF)
         categorieRef.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 categorieCallbAckListener?.onCategorieLoadFailed(p0.message)

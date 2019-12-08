@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dev.restaurant.R
@@ -29,13 +30,14 @@ class CategorieAdapter (private var context: Context, private var categorieList:
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Glide.with(context).load(categorieList.get(position).image).into(holder.categorieImage!!)
+        Glide.with(context).load(categorieList[position].image).into(holder.categorieImage!!)
         holder.categorieName!!.text = categorieList[position].name
 
         holder.setListener(object : IRecyclerItemListener{
             override fun onItemClick(view: View, position: Int) {
                 Common.CATEGORY_SELECTED = categorieList[position]
-                EventBus.getDefault().postSticky(CategorieClick(true,categorieList[position]))
+                EventBus.getDefault().postSticky(CategorieClick(true,categorieList[position]
+                ))
             }
 
         })
@@ -48,7 +50,7 @@ class CategorieAdapter (private var context: Context, private var categorieList:
         listener!!.onItemClick(v!!,adapterPosition)
         }
 
-        internal var listener: IRecyclerItemListener? = null
+        private var listener: IRecyclerItemListener? = null
         var categorieName : TextView? = null
         var categorieImage: ImageView? = null
 
@@ -59,6 +61,7 @@ class CategorieAdapter (private var context: Context, private var categorieList:
         init {
             categorieName = itemView.findViewById(R.id.categorie_text) as TextView
             categorieImage = itemView.findViewById(R.id.categorie_image) as ImageView
+            itemView.setOnClickListener(this)
         }
 
     }
